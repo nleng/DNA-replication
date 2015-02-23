@@ -1,13 +1,12 @@
 # DNA-replication
 Simulation of DNA replication
 
+
+
 ### Installation
 
-...
+The instructions for each application can be found in the subdirectories.
 
-### compile command
-
-g++ -O3 -std=c++11 annihilation.cpp boundary.cpp exceptions.cpp fork.cpp parameter_set.cpp replicator.cpp twoe.cpp replication_main.cpp -o DNA_replication -lsimtools
 
 ### License
 
