@@ -43,12 +43,6 @@ bool run()
 	double initial_slope = 0.001111111111; 	// This parameter determines the initial limiter growth.	entspricht 1/(15 min), aus der funktion Lmax*(1-exp(-t/tau))
 	double fork_speed = 28.;
 
-//	vector<double> speedArray = {6.0, 8.0, 10.0, 12.0, 14.0, 16.0, 18.0, 20.0, 22.0, 24.0, 26.0, 27.8};
-//	vector<double> timeArray = {0., 294.0, 601.0, 924.0, 1265.0, 1625.0, 2007.0, 2413.0, 2848.0, 3315.0, 3819.0, 4367.0, 4968.0, 5632.0, 6374.0, 7215.0, 8186.0, 9335.0, 10740.0, 12553.0, 15107.0, 19474.0, 29614.0};	// mono-exponentiell
-	vector<double> timeArray = {0., 572.0, 1143.0, 1715.0, 2286.0, 2858.0, 3429.0, 4001.0, 4572.0, 5143.0, 5715.0, 6286.0, 6858.0, 7429.0, 8001.0, 8572.0, 9143.0, 9715.0, 10286.0, 10858.0, 11429.0, 12001.0, 12458.0};	// linear
-	vector<double> speedArray = {6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0, 17.0, 18.0, 19.0, 20.0, 21.0, 22.0, 23.0, 24.0, 25.0, 26.0, 27.0, 27.8};
-
-
 	// Load the chromosome data that was taken from the USC genome browser. UCSC
 	ifstream infile("chromosome_patchlists_inactiveX.txt");
        	vector<pair<size_t, list<double> > > band_data;
@@ -186,22 +180,20 @@ bool run()
 		// alle speed aenderungen werden eingetragen
 		change_parameter cp1;
 		cp1.command = CHANGE_REPLI_SPEED;
-		for (int vv = 0; vv < speedArray.size(); vv++)	// speedArray.size()
+		// 18*600 = 10800, das sind 3.5 stunden
+		for (int vv = 1; vv <= 14; vv++)	// speedArray.size()
 		{
-			cp1.time = timeArray[vv]*2.;
-			cp1.value[0] = speedArray[vv];
+			double time = (double) vv*720.;
+			cp1.time = time;
+			cp1.value[0] = 6.+(parameter[7]-6.)*time/10080.; // parameter[7]/4.*(1.+3.*time/10800.); (falls es bei 1/4 anfangen soll, statt bei 6.) 10080 ist 2.8 h und 10800 ist 3 h
 			cp1.chromatin = 0;
 			params.change_params.push_back(cp1);
-
-			// damit das heterochromatin von anfang an gleich bleibt
-			if (vv==0){
-				cp1.time = timeArray[0];
-				cp1.value[0] = speedArray[speedArray.size()-1];
-				cp1.chromatin = 1;
-				params.change_params.push_back(cp1);
-				cp1.chromatin = 2;
-				params.change_params.push_back(cp1);
-			}
+			cp1.value[0] = 6.+(parameter[8]-6.)*time/10080.; // parameter[8]/4.*(1.+3.*time/10800.);
+			cp1.chromatin = 1;
+			params.change_params.push_back(cp1);
+			cp1.value[0] = 6.+(parameter[9]-6.)*time/10080.; // parameter[9]/4.*(1.+3.*time/10800.);
+			cp1.chromatin = 2;
+			params.change_params.push_back(cp1);
 		}
 		
 		params.use_induced_limit = true;
