@@ -1,7 +1,9 @@
 # DNA-replication
 Simulation of DNA replication
 
+### Installation
 
+...
 
 ### compile command
 
