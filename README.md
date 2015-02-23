@@ -9,4 +9,4 @@ g++ -O3 -std=c++11 annihilation.cpp boundary.cpp exceptions.cpp fork.cpp paramet
 
 ### License
 
-This application is released under the WTF-OMG version 3.0.
+This application is released under the WTF-OMG License version 3.0.
