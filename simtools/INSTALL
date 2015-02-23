@@ -1,0 +1,6 @@
+To install simtools, type:
+./configure
+make
+make install
+
+Further information can be found at www.danielloeb.eu/projects/simtools/

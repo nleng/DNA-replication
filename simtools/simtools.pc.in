@@ -1,0 +1,15 @@
+/------------------ mylib.pc.in ------------------------
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@/simtools
+
+Name: simtools
+Description: Library of helper data structures for stochastical simulations.
+URL: http://www.zombiepiratesfromspace.eu
+Version: @SIMTOOLS_VERSION_MAJOR@.@SIMTOOLS_VERSION_MINOR@.@SIMTOOLS_VERSION_MICRO@
+Requires: 
+Libs: -L@libdir@ -lsimtools
+Cflags: -I@includedir@/simtools
+\-------------------------------------------------------
+
