@@ -125,18 +125,11 @@ int main(void)
 			chromfile << *p << "\t";
 		}
 		chromfile << endl;
-		if(k % 3000 == 0)	// (k % 2000 == 0)
+		if(k % 1000 == 0)	// (k % 2000 == 0)
 		{
 			string rname = outdir + string("res_res_") + boost::lexical_cast<string>(k) + string(".txt");
 			ofstream rofile(rname.c_str());
 			//	logfile << "Second output file opened " << k << endl;
-			rofile << dnam;
-			rofile.close();
-		}
-		if(k % 10000 == 0)
-		{
-			string rname = "my/path/output.txt";
-			ofstream rofile(rname.c_str());
 			rofile << dnam;
 			rofile.close();
 		}
