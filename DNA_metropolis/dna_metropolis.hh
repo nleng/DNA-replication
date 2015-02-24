@@ -112,6 +112,13 @@ class dna_metropolis
 		bool use_gravity;
   		bool start_big_random;
 		bool nonucleus;
+		bool with_nucleoli;
+		double surface_rad;
+		double hetFactor;
+		double nucleolusRad;
+		double nucleolusRad2;
+		const std::vector<double> nucleolusPos;
+		const std::vector<double> nucleolusPos2;
 		unsigned long get_step_number() const { return n_cur_step;}
 		std::vector<double> get_chromosome_centers() const {return chromo_positions;};
 	protected:	
