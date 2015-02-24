@@ -1,8 +1,3 @@
-
-##Installation
-
-...
-
 ##Compile command
 
-g++ -O3 -std=c++11 annihilation.cpp boundary.cpp exceptions.cpp fork.cpp parameter_set.cpp replicator.cpp twoe.cpp replication_main.cpp -o DNA_replication -lsimtools
+g++ -std=c++0x --shared -O3 -Wall -I/usr/include/python2.7 dna_metropolis.cpp get_plotpoints.cpp -lboost_python -fPIC -lpython2.7 -o libreplihelpers.so
