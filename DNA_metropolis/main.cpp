@@ -92,7 +92,7 @@ int main(void)
 	dnam.use_loops = true;
 	dnam.use_gravity = true;
 // 	dnam.start_big_random = true;
-	// wenn das letzte argument (truly_random_connections) true ist, werden die connection-anteile nicht benutzt, nur die summ MUSS n_connections ergeben!
+	// number of connections intra and inta chromatin type
 	dnam.init(n_chromosomes, n_beads, real_ends, band_data, n_connections/5, n_connections/5, n_connections/5, n_connections/5*2, true);
 // 	dnam.init(n_chromosomes, n_beads, real_ends, band_data, n_connections*3/16, n_connections*7/16, n_connections*5/16, n_connections/16, false);
 
