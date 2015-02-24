@@ -15,10 +15,13 @@ using std::vector;
 using std::list;
 using std::cerr;
 
+// hier ist ellipsis_y(7500) !!! aber in paper_main.cpp wird es geaendert
+
 // compile und qsub befehl:
 // g++ -std=c++0x -O3 -Wall paper_main.cpp dna_metropolis.cpp -o x0 && qsub -N x0 "./x0"
+// start_big_random(false)	 ob es komplett random anfaengt?
 dna_metropolis::dna_metropolis(unsigned int in_n_beads, double i_kappa_het, double i_kappa_eu, double i_kappa_fac, double i_kappa_2, double i_kappa_3, double i_kappa_fac_rep, double temperature)
-  : ellipsis_x(7500), ellipsis_y(5000), ellipsis_z(3500), n_beads(in_n_beads), kappa_het(i_kappa_het), kappa_eu(i_kappa_eu), kappa_fac(i_kappa_fac), kappa_2(i_kappa_2), kappa_3(i_kappa_3), kappa_fac_rep(i_kappa_fac_rep), beta(1.e-18/(boltzmann_constant*temperature)), U(0.), n_cur_step(0), n_accepted(0), use_loops(true), use_gravity(true), start_big_random(false), nonucleus(false), rng_engine(static_cast<std::tr1::mt19937::result_type>(23)), rng_real(0., 1.), vg_real(rng_engine, rng_real), real_it(&vg_real), rng_int(0, n_beads-1), vg_int(rng_engine, rng_int), int_it(&vg_int)
+  : ellipsis_x(7500), ellipsis_y(7500), ellipsis_z(3500), n_beads(in_n_beads), kappa_het(i_kappa_het), kappa_eu(i_kappa_eu), kappa_fac(i_kappa_fac), kappa_2(i_kappa_2), kappa_3(i_kappa_3), kappa_fac_rep(i_kappa_fac_rep), beta(1.e-18/(boltzmann_constant*temperature)), U(0.), n_cur_step(0), n_accepted(0), use_loops(true), use_gravity(true), start_big_random(false), nonucleus(false), with_nucleoli(true), surface_rad(1000.), hetFactor(0.5), nucleolusRad(1500.), nucleolusRad2(1200.), nucleolusPos({750., 3000., 0.}), nucleolusPos2({-1000., -2500., 0.}), rng_engine(static_cast<std::tr1::mt19937::result_type>(23)), rng_real(0., 1.), vg_real(rng_engine, rng_real), real_it(&vg_real), rng_int(0, n_beads-1), vg_int(rng_engine, rng_int), int_it(&vg_int)
 {
 }
 
@@ -327,15 +330,10 @@ bool dna_metropolis::isinside(const double *p) const
 		std::cout << "Ho! " << n_cur_step << std::endl;
 		return true;
 	}
-	// hier ????? teste, ob punkt in zellkern und ob er ausserhalb des nucleolus ist
+	// teste, ob punkt in zellkern und ob er ausserhalb des nucleolus ist
 	// muss startwert in dna_metropolis::build_chromatin() so legen, dass er nicht im nucleolus liegt
 	bool inNucleus = false;
 	bool outNucleolus = false;
-	// in anderer funktion aendern, falls ich es hier aendere!!!
-	vector<double> nucleolusPos = {750., 3000., 0.};
-	vector<double> nucleolusPos2 = {-1000., -2500., 0.};
-	double nucleolusRad = 1500.;	// macht 15% des volumens aus
-	double nucleolusRad2 = 1200.;
 	
 	double xn = *p-nucleolusPos[0];
 	double xn2 = *p-nucleolusPos2[0];
@@ -351,12 +349,14 @@ bool dna_metropolis::isinside(const double *p) const
 	
 	if (xv*xv+yv*yv+zv*zv <= 1.)
 		inNucleus = true;
-
-	// wahrscheinlich sind die startpositionen so, dass das garnicht geht
+	
+	if (!with_nucleoli)
+		return inNucleus;
 	if (xn*xn+yn*yn+zn*zn >= nucleolusRad*nucleolusRad && xn2*xn2+yn2*yn2+zn2*zn2 >= nucleolusRad2*nucleolusRad2)
 		outNucleolus = true;
 
 	return outNucleolus && inNucleus;
+
 	
 }
 
@@ -408,25 +408,21 @@ double dna_metropolis::en_calc(const double *left, const double *right, const un
 
 double dna_metropolis::fac_repuls(const double *left, const unsigned &binf) const
 {
+	if (!with_nucleoli)
+		return 0.;
+	
 	double xx = *left;
 	++left;
 	double yy = *left;
 	++left;
 	double zz = *left;
 
+	
 	// fuer alle punkte gilt, dass sie nicht im nucleolus liegen duerfen
 	// fuer facultatives gilt zusaetzlich die folgende anziehung
-// 	vector<double> nucleolusPos = {-3000., 750., 0.};
-// 	vector<double> nucleolusPos2 = {2500., -1000., 0.};
-	vector<double> nucleolusPos = {750., 3000., 0.};
-	vector<double> nucleolusPos2 = {-1000., -2500., 0.};
-	
-	double surface_rad = 1000.;
 	if((binf>>9)%2)
 	{
 		// im ersten geht der normierte radius ein, daher ein faktor (ellipsis_x*ellipsis_y*ellipsis_z)**-3
-		// iausserdem noch ein faktor 5000 und 1.4, damit ist die kraft in y-richtung gleich der nucleolus-kraft, in den anderen richtungen allerdings nicht
-// 		double membranGrav = -kappa_fac_rep/5000./(1.4-sqrt(xx/ellipsis_x*xx/ellipsis_x+yy/ellipsis_y*yy/ellipsis_y+zz/ellipsis_z*zz/ellipsis_z));
 		double membranGrav = -kappa_fac_rep/(surface_rad+5082.*(1.-sqrt(xx/ellipsis_x*xx/ellipsis_x+yy/ellipsis_y*yy/ellipsis_y+zz/ellipsis_z*zz/ellipsis_z)));
 		double nucleolusGrav = -kappa_fac_rep/sqrt((xx-nucleolusPos[0])*(xx-nucleolusPos[0])+(yy-nucleolusPos[1])*(yy-nucleolusPos[1])+(zz-nucleolusPos[2])*(zz-nucleolusPos[2]));
 		nucleolusGrav += -kappa_fac_rep/sqrt((xx-nucleolusPos2[0])*(xx-nucleolusPos2[0])+(yy-nucleolusPos2[1])*(yy-nucleolusPos2[1])+(zz-nucleolusPos2[2])*(zz-nucleolusPos2[2]));
@@ -435,13 +431,11 @@ double dna_metropolis::fac_repuls(const double *left, const unsigned &binf) cons
 	// falls ich fuer heterocrhomatin eine abstossung will
 	if((binf>>10)%2)
 	{
-		double hetFactor = 0.5;
 		double membranGrav = hetFactor*kappa_fac_rep/(surface_rad+5082.*(1.-sqrt(xx/ellipsis_x*xx/ellipsis_x+yy/ellipsis_y*yy/ellipsis_y+zz/ellipsis_z*zz/ellipsis_z)));
 		double nucleolusGrav = hetFactor*kappa_fac_rep/sqrt((xx-nucleolusPos[0])*(xx-nucleolusPos[0])+(yy-nucleolusPos[1])*(yy-nucleolusPos[1])+(zz-nucleolusPos[2])*(zz-nucleolusPos[2]));
 		nucleolusGrav += hetFactor*kappa_fac_rep/sqrt((xx-nucleolusPos2[0])*(xx-nucleolusPos2[0])+(yy-nucleolusPos2[1])*(yy-nucleolusPos2[1])+(zz-nucleolusPos2[2])*(zz-nucleolusPos2[2]));
 		return membranGrav + nucleolusGrav;
 	}
-	
 	return 0.;
 }
 
