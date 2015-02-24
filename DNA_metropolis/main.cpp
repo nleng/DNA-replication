@@ -24,7 +24,7 @@ using std::fstream;
 
 // laueft momentan bis 100000, aber gibt nur jeden 1000er aus
 
-int main(int argc, char* argv[])
+int main(void)
 {
     fstream infile2("chromatinType.txt");
     vector<vector<int>> chromType_data;
