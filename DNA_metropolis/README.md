@@ -1,3 +1,5 @@
-##Compile command
+##Compile and run
 
-g++ -std=c++0x --shared -O3 -Wall -I/usr/include/python2.7 dna_metropolis.cpp get_plotpoints.cpp -lboost_python -fPIC -lpython2.7 -o libreplihelpers.so
+g++ -std=c++0x -O3 -Wall main.cpp dna_metropolis.cpp -o dna_metropolis
+
+./dna_metropolis
