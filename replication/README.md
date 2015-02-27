@@ -1,3 +1,6 @@
+#Replication
+This program simulates the time evolution of DNA-replication on a 1D DNA-string. To generate a realistic 3D-Simulation is has to be combined with the DNA-Metropolis package.
+
 ##Compile and run
 
 1. Make sure that the simtools library is properly installed.
