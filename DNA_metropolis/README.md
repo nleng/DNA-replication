@@ -1,5 +1,5 @@
 #DNA-Metropolis
-This package provides a Monte Carlo simulation of the 3D-Chromatin formation confined within the nucleus based on the random loop model for long polymers by Bohn et al. [1], which has already been successfully used to describe folding of chromatin in human cells [2].
+This package provides a Monte Carlo simulation of the 3D DNA formation confined within the nucleus based on the random loop model for long polymers by Bohn et al. [1], which has already been successfully used to describe folding of chromatin in human cells [2].
 
 1. Bohn, M., Heermann, D. W. and van Driel, R. (2007). Random loop model for long polymers. Phys Rev E Stat Nonlin Soft Matter Phys 76, 051805.
 
