@@ -15,13 +15,8 @@ using std::vector;
 using std::list;
 using std::cerr;
 
-// hier ist ellipsis_y(7500) !!! aber in paper_main.cpp wird es geaendert
-
-// compile und qsub befehl:
-// g++ -std=c++0x -O3 -Wall paper_main.cpp dna_metropolis.cpp -o x0 && qsub -N x0 "./x0"
-// start_big_random(false)	 ob es komplett random anfaengt?
 dna_metropolis::dna_metropolis(unsigned int in_n_beads, double i_kappa_het, double i_kappa_eu, double i_kappa_fac, double i_kappa_2, double i_kappa_3, double i_kappa_fac_rep, double temperature)
-  : ellipsis_x(7500), ellipsis_y(7500), ellipsis_z(3500), n_beads(in_n_beads), kappa_het(i_kappa_het), kappa_eu(i_kappa_eu), kappa_fac(i_kappa_fac), kappa_2(i_kappa_2), kappa_3(i_kappa_3), kappa_fac_rep(i_kappa_fac_rep), beta(1.e-18/(boltzmann_constant*temperature)), U(0.), n_cur_step(0), n_accepted(0), use_loops(true), use_gravity(true), start_big_random(false), nonucleus(false), with_nucleoli(true), surface_rad(1000.), hetFactor(0.5), nucleolusRad(1500.), nucleolusRad2(1200.), nucleolusPos({750., 3000., 0.}), nucleolusPos2({-1000., -2500., 0.}), rng_engine(static_cast<std::tr1::mt19937::result_type>(23)), rng_real(0., 1.), vg_real(rng_engine, rng_real), real_it(&vg_real), rng_int(0, n_beads-1), vg_int(rng_engine, rng_int), int_it(&vg_int)
+  : ellipsis_x(7500), ellipsis_y(5000), ellipsis_z(3500), n_beads(in_n_beads), kappa_het(i_kappa_het), kappa_eu(i_kappa_eu), kappa_fac(i_kappa_fac), kappa_2(i_kappa_2), kappa_3(i_kappa_3), kappa_fac_rep(i_kappa_fac_rep), beta(1.e-18/(boltzmann_constant*temperature)), U(0.), n_cur_step(0), n_accepted(0), use_loops(true), use_gravity(true), start_big_random(false), nonucleus(false), with_nucleoli(true), surface_rad(1000.), hetFactor(0.5), nucleolusRad(1500.), nucleolusRad2(1200.), nucleolusPos({750., 3000., 0.}), nucleolusPos2({-1000., -2500., 0.}), rng_engine(static_cast<std::tr1::mt19937::result_type>(23)), rng_real(0., 1.), vg_real(rng_engine, rng_real), real_it(&vg_real), rng_int(0, n_beads-1), vg_int(rng_engine, rng_int), int_it(&vg_int)
 {
 }
 
