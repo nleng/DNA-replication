@@ -12,4 +12,4 @@ make
 
 make install
 
-You will probably have to install some of the dependencies marked as missing during configuration.
+Possibly you will have to install more dependencies marked as missing during configuration.
