@@ -1,6 +1,6 @@
 ##Installation
 
-Make sure dependencies are installed:
+Make sure that dependencies are installed:
 
 apt-get install build-essential libboost-all-dev libtool
 
