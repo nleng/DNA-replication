@@ -1,6 +1,6 @@
 # DNA-replication
 This application combines a 1D Simulation of DNA replication with a 3D random loop model DNA model. The simulations can be performed online at  http://replionline.cfs-me-research.net/. 
-Original author: Daniel Löb. 
+Original author: Dr. Daniel Löb. 
 
 
 
