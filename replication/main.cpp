@@ -69,7 +69,7 @@ bool run()
 		band_data.push_back(rpair);
 	}
 
-	ifstream infile2("chromatinTypeFacCyto.txt");
+	ifstream infile2("chromatinType.txt");
     vector<vector<int>> chromType_data;
 	while(infile2)
 	{
@@ -180,15 +180,15 @@ bool run()
 		// alle speed aenderungen werden eingetragen
 		change_parameter cp1;
 		cp1.command = CHANGE_REPLI_SPEED;
-		// 18*600 = 10800, das sind 3.5 stunden
-		for (int vv = 1; vv <= 14; vv++)	// speedArray.size()
+
+		for (int vv = 1; vv <= 14; vv++)
 		{
 			double time = (double) vv*720.;
 			cp1.time = time;
-			cp1.value[0] = 6.+(fork_speed-6.)*time/10080.; // parameter[7]/4.*(1.+3.*time/10800.); (falls es bei 1/4 anfangen soll, statt bei 6.) 10080 ist 2.8 h und 10800 ist 3 h
+			cp1.value[0] = 6.+(fork_speed-6.)*time/10080.;
 			cp1.chromatin = 0;
 			params.change_params.push_back(cp1);
-			cp1.value[0] = 6.+(fork_speed-6.)*time/10080.; // parameter[8]/4.*(1.+3.*time/10800.);
+			cp1.value[0] = 6.+(fork_speed-6.)*time/10080.;
 			cp1.chromatin = 1;
 			params.change_params.push_back(cp1);
 			cp1.value[0] = 6.+(fork_speed-6.)*time/10080.; // parameter[9]/4.*(1.+3.*time/10800.);
