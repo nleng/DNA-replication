@@ -185,13 +185,13 @@ bool run()
 		{
 			double time = (double) vv*720.;
 			cp1.time = time;
-			cp1.value[0] = 6.+(parameter[7]-6.)*time/10080.; // parameter[7]/4.*(1.+3.*time/10800.); (falls es bei 1/4 anfangen soll, statt bei 6.) 10080 ist 2.8 h und 10800 ist 3 h
+			cp1.value[0] = 6.+(fork_speed-6.)*time/10080.; // parameter[7]/4.*(1.+3.*time/10800.); (falls es bei 1/4 anfangen soll, statt bei 6.) 10080 ist 2.8 h und 10800 ist 3 h
 			cp1.chromatin = 0;
 			params.change_params.push_back(cp1);
-			cp1.value[0] = 6.+(parameter[8]-6.)*time/10080.; // parameter[8]/4.*(1.+3.*time/10800.);
+			cp1.value[0] = 6.+(fork_speed-6.)*time/10080.; // parameter[8]/4.*(1.+3.*time/10800.);
 			cp1.chromatin = 1;
 			params.change_params.push_back(cp1);
-			cp1.value[0] = 6.+(parameter[9]-6.)*time/10080.; // parameter[9]/4.*(1.+3.*time/10800.);
+			cp1.value[0] = 6.+(fork_speed-6.)*time/10080.; // parameter[9]/4.*(1.+3.*time/10800.);
 			cp1.chromatin = 2;
 			params.change_params.push_back(cp1);
 		}
