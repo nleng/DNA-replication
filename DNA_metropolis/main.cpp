@@ -85,7 +85,7 @@ int main(void)
 	// kappa_3: for the repulsion of the chromatin-center
 	// n_beads, kappa_het, kappa_eu, kappa_fac, kappa_2, kappa_3, kappa_fac_rep, temperature)
 	string outdir = ("/my/path/");
-	dna_metropolis dnam(beadnr, 3.e-6, 1.e-8, 5.e-7, 5.e-7, 1.e-4,  15., 290);
+	dna_metropolis dnam(beadnr, 3.e-6, 1.e-8, 5.e-7, 5.e-7, 1.e-4,  30., 290);
 	dnam.ellipsis_y = 5000;
 	
 	unsigned n_connections = 5000;
