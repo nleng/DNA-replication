@@ -35,8 +35,8 @@ bool run()
 	bool all_ok = true;
 	
 	unsigned n_origins = 500000;
-	double inhibition_distance = 67000.;
-	double sigma = 2.8e5;			// Sigma of induced firing gaussian
+	double inhibition_distance = 55000.;
+	double sigma = 2.4e5;			// Sigma of induced firing gaussian
 	double induced_limit = 0.0;		// Cutoff probability density for induced firing. 
 	size_t n_runs = 1;
 	double limiter = 6000;			// This is the number of fork _pairs_.
