@@ -18,5 +18,5 @@ Then compile with
 
 Finally, run the simulation
 
-```./dna_metropolis```
+```./dna_metropolis```.
 
