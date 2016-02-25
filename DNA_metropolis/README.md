@@ -16,7 +16,5 @@ Then compile with
 
 ```g++ -std=c++0x -O3 -Wall main.cpp dna_metropolis.cpp -o dna_metropolis```
 
-Finally, run the simulation
-
-```./dna_metropolis```.
+Finally, run the simulation with `./dna_metropolis`.
 
