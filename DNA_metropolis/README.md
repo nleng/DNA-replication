@@ -14,8 +14,9 @@ Make sure that g++ and boost are installed, on debian-like systems:
 
 Then compile with
 
-  ```g++ -std=c++0x -O3 -Wall main.cpp dna_metropolis.cpp -o dna_metropolis```
+```g++ -std=c++0x -O3 -Wall main.cpp dna_metropolis.cpp -o dna_metropolis```
 
 Finally, run the simulation
 
 ```./dna_metropolis```
+
