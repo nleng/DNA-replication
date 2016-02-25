@@ -8,8 +8,14 @@ This package provides a Monte Carlo simulation of the 3D DNA formation confined 
 
 
 ##Compile and run
-Make sure that g++ and boost are installed (on debian systems: apt-get install build-essential libboost-all-dev), then compile with
+Make sure that g++ and boost are installed, on debian-like systems: 
+
+apt-get install build-essential libboost-all-dev)
+
+Then compile with
 
 g++ -std=c++0x -O3 -Wall main.cpp dna_metropolis.cpp -o dna_metropolis
+
+Finally, run the simulation
 
 ./dna_metropolis
