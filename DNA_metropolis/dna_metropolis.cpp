@@ -80,9 +80,6 @@ void dna_metropolis::init(const vector<unsigned> &n_chromosomes, const vector<un
 				{
 					temp_info += 256;
 				}
-				// hier ?????
-				// bead_info speichert einfach fuer jedes monomer die information, ob es start/ende ist und welcher chromatin-typ es ist, also keine position oda so.
-				// speater wird ueber if((binf>>10)%2) auf heterochromatin gepruft. der >> operator verschiebt die bits nach rechts, die verschobenen fallen raus, also aus 0101 wird 0010, bei 1024 bleibt mit >>10 genau 1 uebrig.
 				// Store the chromatin type of this bead in the 10th bit
 // 				if(usePercent){
 // 				// nicor: falls ich die anteile an eu/het/fac zufaellig bestimmen will
@@ -158,8 +155,6 @@ void dna_metropolis::init(const vector<unsigned> &n_chromosomes, const vector<un
 			}
 			else
 			{
-				// hier ????? facultatives ergaenzen. fac_cons hinzufuegen und: or (bead_info[k1]>>9)%2 != (bead_info[k2]>>9)%2
-				// aber braeuchte ich nur ohne truly_random_connections
 				// Finally see if there is still capacity for a connection between the two kinds of chromatin.
 				if((bead_info[k1]>>10)%2 != (bead_info[k2]>>10)%2 or (bead_info[k1]>>9)%2 != (bead_info[k2]>>9)%2)
 				{
@@ -213,7 +208,7 @@ void dna_metropolis::load_coordinates(const vector<double> &in_coords)
 void dna_metropolis::build_chromatin()
 {
 	// Place beads randomly at fixed distances for the initial chromatin configuration.
-	// hier ????? startwert darf nicht im nucleolus liegen! siehe nucleolusPos
+	// start value has to be outside the nucleoli! see nucleolusPos.
 	double curx = -500.;
 	double cury = 0.;
 	double curz = 0.;
@@ -325,8 +320,7 @@ bool dna_metropolis::isinside(const double *p) const
 		std::cout << "Ho! " << n_cur_step << std::endl;
 		return true;
 	}
-	// teste, ob punkt in zellkern und ob er ausserhalb des nucleolus ist
-	// muss startwert in dna_metropolis::build_chromatin() so legen, dass er nicht im nucleolus liegt
+
 	bool inNucleus = false;
 	bool outNucleolus = false;
 	
@@ -413,8 +407,7 @@ double dna_metropolis::fac_repuls(const double *left, const unsigned &binf) cons
 	double zz = *left;
 
 	
-	// fuer alle punkte gilt, dass sie nicht im nucleolus liegen duerfen
-	// fuer facultatives gilt zusaetzlich die folgende anziehung
+	// all points are not allowed within the nucleoli. for facultative heterochromatin there is also this attractive potential:
 	if((binf>>9)%2)
 	{
 		// im ersten geht der normierte radius ein, daher ein faktor (ellipsis_x*ellipsis_y*ellipsis_z)**-3
