@@ -89,7 +89,7 @@ class dna_metropolis
 		
 		constexpr static double boltzmann_constant = 1.380648e-23;
 		// The unit of measurement here is nanometers.
-		constexpr static double init_dist = 300.;	// Inter-bead distance used for initial placement of beads.
+		constexpr static double init_dist = 200.;	// Inter-bead distance used for initial placement of beads.
 		constexpr static double delta_jump = 10.;
 		constexpr static double dna_unit = 1.e5;
 		constexpr static double pi = 3.14159265;
