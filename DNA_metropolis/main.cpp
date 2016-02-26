@@ -95,9 +95,12 @@ int main(void)
 	// number of connections intra and inta chromatin type
 	dnam.init(n_chromosomes, n_beads, real_ends, band_data, n_connections/5, n_connections/5, n_connections/5, n_connections/5*2, true);
 // 	dnam.init(n_chromosomes, n_beads, real_ends, band_data, n_connections*3/16, n_connections*7/16, n_connections*5/16, n_connections/16, false);
+	
+	string rname = outdir + string("dna_coordinates_start.txt");
+	ofstream rofile(rname.c_str());
+	rofile << dnam;
+	rofile.close();
 
-// 	string outdir = ("/imports/debora.work/nicor/dnaMetropolisResults/x0/");
-// 	string outdir = ("/home/corni/aaReplication/dnaSim/outFile/");
 	ofstream tmpfile((outdir + string("tmpfile.txt")).c_str());
 // 		cout << std::scientific << dnam.get_energy() << "\t" << dnam.get_acceptance_ratio() << "\t" << dnam.get_avg_dist() << endl;
 	tmpfile << std::scientific << dnam.get_energy() << "\t" << 0. << "\t" << dnam.get_avg_dist() << endl;
@@ -125,7 +128,7 @@ int main(void)
 		chromfile << endl;
 		if(k % 1000 == 0)	// (k % 2000 == 0)
 		{
-			string rname = outdir + string("res_res_") + boost::lexical_cast<string>(k) + string(".txt");
+			string rname = outdir + string("dna_coordinates_") + boost::lexical_cast<string>(k) + string(".txt");
 			ofstream rofile(rname.c_str());
 			//	logfile << "Second output file opened " << k << endl;
 			rofile << dnam;
