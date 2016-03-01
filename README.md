@@ -1,5 +1,5 @@
 # DNA-replication
-This application combines a 1D Simulation of DNA replication with a 3D random loop model DNA model. The simulations can be performed online at  http://replionline.cfs-me-research.net/. 
+This repository contains the source code for a 1D Simulation of DNA replication as well as a 3D chromatin simulation using a random loop DNA model. The simulations can be performed online at  http://replionline.cfs-me-research.net/. 
 Original author: Dr. Daniel Löb. 
 
 
