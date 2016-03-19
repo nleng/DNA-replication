@@ -11,7 +11,7 @@ To install simtools, type:
 
 make
 
-make install
+sudo make install
 ```
 
 Possibly you will have to install more dependencies marked as missing during configuration. 
