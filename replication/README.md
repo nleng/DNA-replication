@@ -3,13 +3,13 @@ This program simulates the time evolution of DNA-replication on a 1D DNA-string.
 
 ##Compile and run
 
-Make sure that the simtools library is properly installed.
+1. Make sure that the simtools library is properly installed.
 
-Compile:
+2. Compile:
 
 ```g++ -O3 -std=c++11 annihilation.cpp boundary.cpp exceptions.cpp fork.cpp parameter_set.cpp replicator.cpp twoe.cpp main.cpp -o DNA_replication -lsimtools```
 
-Run with 
+3. Run with: 
 ```
 ./DNA_replication
 ```
