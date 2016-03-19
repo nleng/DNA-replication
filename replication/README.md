@@ -7,9 +7,7 @@ Make sure that the simtools library is properly installed.
 
 Compile:
 
-```
-g++ -O3 -std=c++11 annihilation.cpp boundary.cpp exceptions.cpp fork.cpp parameter_set.cpp replicator.cpp twoe.cpp main.cpp -o DNA_replication -lsimtools
-```
+```g++ -O3 -std=c++11 annihilation.cpp boundary.cpp exceptions.cpp fork.cpp parameter_set.cpp replicator.cpp twoe.cpp main.cpp -o DNA_replication -lsimtools```
 
 Run with 
 ```
