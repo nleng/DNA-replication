@@ -1,4 +1,4 @@
-##Installation
+##Installation on Debian/Ubuntu
 
 Make sure that dependencies are installed:
 
@@ -14,4 +14,5 @@ make
 make install
 ```
 
-Possibly you will have to install more dependencies marked as missing during configuration.
+Possibly you will have to install more dependencies marked as missing during configuration. 
+
