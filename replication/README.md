@@ -12,5 +12,5 @@ This program simulates the time evolution of DNA-replication on a 1D DNA-string.
 
  ```./DNA_replication```
 
-aa
+
 
