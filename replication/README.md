@@ -8,9 +8,7 @@ This program simulates the time evolution of DNA-replication on a 1D DNA-string.
 
 ```g++ -O3 -std=c++11 annihilation.cpp boundary.cpp exceptions.cpp fork.cpp parameter_set.cpp replicator.cpp twoe.cpp main.cpp -o DNA_replication -lsimtools```
 
-3. Run
-
- ```./DNA_replication```
+3. Run with ```./DNA_replication```.
 
 
 
