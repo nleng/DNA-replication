@@ -10,7 +10,7 @@ This package provides a Monte Carlo simulation of the 3D DNA formation confined 
 ##Compile and run
 Make sure that g++ and boost are installed, on debian-like systems: 
 
-```apt-get install build-essential libboost-all-dev)```
+```apt-get install build-essential libboost-all-dev```
 
 Then compile with
 
