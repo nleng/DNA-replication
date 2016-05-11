@@ -4,9 +4,11 @@ Make sure that dependencies are installed:
 
 apt-get install build-essential libboost-all-dev libtool
 
-To install simtools, type:
+To install simtools, open a terminal and type:
 
 ```
+cd /your/simtools/directory/
+
 chmod +x configure
 
 ./configure
