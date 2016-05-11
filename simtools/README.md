@@ -7,6 +7,8 @@ apt-get install build-essential libboost-all-dev libtool
 To install simtools, type:
 
 ```
+chmod +x configure
+
 ./configure
 
 make
