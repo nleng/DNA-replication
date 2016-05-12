@@ -325,15 +325,19 @@ bool run()
 		
 		repli.clear();
 		string identifier = tostr(limiter) + string("_") + tostr(sigma) + string("_") + tostr(inhibition_distance) + string("_") + tostr(fork_speed) + string("_") + tostr(n_origins) + string("_") + tostr(i) + string("_run");
-		params.rate_file_name = dirname + string("res_rates_") + identifier + string(".txt"); // wieviel wird grad gemacht, vielleicht einzelne fork
-		params.covered_origin_file_name = dirname + string("res_cov_origins_") + identifier + string(".txt");	// ueberfahrene origins
+		 // replicated amount per time
+		params.rate_file_name = dirname + string("res_rates_") + identifier + string(".txt");
+		// covered origins
+		params.covered_origin_file_name = dirname + string("res_cov_origins_") + identifier + string(".txt");
 		params.ori_file_name = dirname + string("res_origins_") + identifier + string(".txt");
 		params.anni_file_name = dirname + string("res_annihilations_") + identifier + string(".txt");
-		params.lifetimes_file_name = dirname + string("res_lifetimes_") + identifier + string(".txt");	// cluster lifetimes
+		// cluster lifetimes
+		params.lifetimes_file_name = dirname + string("res_lifetimes_") + identifier + string(".txt");
 		params.fdd_file_name = dirname + string("res_fdd_") + identifier + string(".txt");
 		params.ip_file_name = dirname + string("res_ip_") + identifier + string(".txt");
 		params.fork_file_name = dirname + string("res_fork_") + identifier + string(".txt");
-		params.note_when_covered_file_name = dirname + string("res_nwc_") + identifier + string(".txt");;	// wann welches ueberfahren wurde
+		// note when covered (timestap when origin is passed)
+		params.note_when_covered_file_name = dirname + string("res_nwc_") + identifier + string(".txt");
 		
 		params.ori_d_file_name = dirname + string("res_insane_") + identifier + string(".txt");
 		
