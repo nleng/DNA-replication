@@ -3,7 +3,7 @@ This program simulates the time evolution of DNA-replication on a 1D DNA-string.
 
 ##Compile and run
 
-Make sure that the simtools library is properly installed.
+Make sure that the [simtools library](../simtools/) is properly installed.
 
 Compile:
 
